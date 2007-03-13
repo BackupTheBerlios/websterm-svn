@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="websterm" basedir=".">
+	<property file="build.properties" />
+
+	<path id="lib.build">
+		<fileset dir="${lib.build}" includes="*.jar" />
+	</path>
+
+	<path id="lib.runtime">
+		<fileset dir="${lib.runtime}" includes="*.jar" />
+	</path>
+
+	<path id="master.cp">
+		<path refid="lib.build" />
+		<path refid="lib.runtime" />
+		<pathelement location="${bin.java}" />
+		<pathelement location="${bin.test}" />
+	</path>
+
+	<target name="init">
+		<mkdir dir="${src.java}" />
+		<mkdir dir="${src.test}" />
+
+		<mkdir dir="${doc.src}" />
+
+		<mkdir dir="${lib.build}" />
+		<mkdir dir="${lib.runtime}" />
+	</target>
+
+	<target name="clean">
+		<delete dir="${bin.java}" />
+		<delete dir="${bin.test}" />
+	</target>
+
+	<target name="compile.java">
+		<compile-java srcdir="${src.java}" destdir="${bin.java}" />
+	</target>
+
+	<target name="compile.test">
+		<compile-java srcdir="${src.test}" destdir="${bin.test}" />
+	</target>
+
+	<target name="compile" depends="compile.java, compile.test" />
+
+	<target name="test.prepare">
+		<echo message="Some Test Preparations" />
+	</target>
+
+	<target name="test">
+		<mkdir dir="${doc.test}" />
+		<junit printsummary="yes" haltonfailure="yes" fork="true">
+			<classpath refid="master.cp" />
+			<formatter type="plain" usefile="false" />
+			<formatter type="xml" usefile="true" />
+			<batchtest todir="${doc.test}">
+				<fileset dir="${src.test}">
+					<include name="**/*Test.java" />
+				</fileset>
+			</batchtest>
+		</junit>
+	</target>
+
+	<macrodef name="compile-java">
+		<attribute name="srcdir" />
+		<attribute name="destdir" />
+		<sequential>
+			<mkdir dir="@{destdir}" />
+			<javac source="1.5"
+			       target="1.5"
+			       encoding="UTF-8"
+			       srcdir="@{srcdir}"
+			       destdir="@{destdir}"
+			       classpathref="master.cp" />
+			<copy todir="@{destdir}">
+				<fileset dir="@{srcdir}">
+					<exclude name="**/*.java" />
+				</fileset>
+			</copy>
+		</sequential>
+	</macrodef>
+</project>
