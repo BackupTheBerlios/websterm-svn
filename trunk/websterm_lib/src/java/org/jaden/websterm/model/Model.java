@@ -29,6 +29,9 @@ public class Model implements Serializable {
 
 	private int id;
 
+	/**
+	 * @return
+	 */
 	public int getId() {
 		return id;
 	}

@@ -30,6 +30,7 @@ import org.xml.sax.SAXException;
  * @author Jack Shen
  */
 public abstract class SearchEngineDOMParser implements SearchEngineParser {
+	protected Element root;
 
 	/**
 	 * @see org.jaden.websterm.parser.SearchEngineParser#parseDocument(java.io.InputStream)
@@ -46,10 +47,10 @@ public abstract class SearchEngineDOMParser implements SearchEngineParser {
 			e.printStackTrace();
 		}
 
-		Element root = parser.getDocument().getDocumentElement();
+		root = parser.getDocument().getDocumentElement();
 
-		return parseDocument(root);
+		return parseDocument();
 	}
 
-	public abstract List<SearchResult> parseDocument(Element root);
+	public abstract List<SearchResult> parseDocument();
 }

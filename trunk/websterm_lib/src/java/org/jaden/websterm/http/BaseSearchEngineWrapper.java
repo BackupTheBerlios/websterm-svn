@@ -1,6 +1,6 @@
 /**
- * Filename: SearchEngineWrapper.java
- * Date: 2007-3-6
+ * Filename: BaseSearchEngineWrapper.java
+ * Date: 2007-3-14
  *
  * Copyright (C) 2007-03-05 Jack Shen This program is free software; you can
  * redistribute it and/or modify it under the terms of the GNU General Public
@@ -15,27 +15,41 @@
  */
 package org.jaden.websterm.http;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.jaden.websterm.config.SearchContext;
 import org.jaden.websterm.model.SearchResult;
 
 /**
- * Wraps up any search engine by using specific search engine HTML parsers and
- * retrieve the search results for later filtering use.
- * 
  * @author Jack Shen
  */
-public interface SearchEngineWrapper {
+public abstract class BaseSearchEngineWrapper implements SearchEngineWrapper {
+	private List<SearchResult> results;
+
 	/**
-	 * Classes that implement this interface must implement this method and
-	 * parse the search engine web page with custom HTML parser in order to get
-	 * the search results.
-	 * 
-	 * @param context
-	 *            The search context of this search, e.g. search url, keywords
-	 *            etc.
-	 * @return A list of search results.
+	 * @see org.jaden.websterm.http.SearchEngineWrapper#getSearchResults(org.jaden.websterm.config.SearchContext)
 	 */
-	public List<SearchResult> getSearchResults(SearchContext context);
+	public List<SearchResult> getSearchResults(SearchContext context) {
+		results = new ArrayList<SearchResult>();
+
+		context.setKeywords(context.getKeywords().replaceAll("\\s+", "+"));
+
+		return results;
+	}
+
+	/**
+	 * @return the results
+	 */
+	public List<SearchResult> getResults() {
+		return results;
+	}
+
+	/**
+	 * @param results
+	 *            the results to set
+	 */
+	public void setResults(List<SearchResult> results) {
+		this.results = results;
+	}
 }

@@ -29,18 +29,28 @@ import org.jaden.websterm.model.SearchResult;
 import org.jaden.websterm.parser.SearchEngineParser;
 
 /**
+ * Default implementation of {@link SearchEngineWrapper} that uses ordinary HTML
+ * parsers to retrieve the search results.
+ * 
  * @author Jack Shen
  */
-public class DefaultSearchEngineWrapper implements SearchEngineWrapper {
+public class ParserSearchEngineWrapper extends BaseSearchEngineWrapper {
 	private SearchEngineParser parser;
 
 	/**
+	 * Implements the
+	 * {@link SearchEngineWrapper#getSearchResults(SearchContext)} by connecting
+	 * to the search engine with the supplied url template and keywords, parses
+	 * the HTML stream, and obtains the search results.
+	 * 
+	 * @see org.jaden.websterm.parser.SearchEngineParser
 	 * @see org.jaden.websterm.http.SearchEngineWrapper#getSearchResults(org.jaden.websterm.config.SearchContext)
 	 */
 	public List<SearchResult> getSearchResults(SearchContext context) {
+		List<SearchResult> results = super.getSearchResults(context);
+
 		String url = context.getUrlTemplate();
-		String keywords = context.getKeywords().replaceAll("\\s+", "+");
-		url = url.replaceAll("\\$\\{keywords\\}", keywords);
+		url = url.replaceAll("\\$\\{keywords\\}", context.getKeywords());
 		url = url.replaceAll("\\$\\{paging\\}", Integer.toString(context
 				.getConfiguration().getPagingStart()));
 		try {
@@ -63,7 +73,6 @@ public class DefaultSearchEngineWrapper implements SearchEngineWrapper {
 		HttpClient client = new HttpClient();
 		HttpMethod get = new GetMethod(url);
 
-		List<SearchResult> results = null;
 		try {
 			int status = client.executeMethod(get);
 
@@ -98,5 +107,4 @@ public class DefaultSearchEngineWrapper implements SearchEngineWrapper {
 	public void setParser(SearchEngineParser parser) {
 		this.parser = parser;
 	}
-
 }

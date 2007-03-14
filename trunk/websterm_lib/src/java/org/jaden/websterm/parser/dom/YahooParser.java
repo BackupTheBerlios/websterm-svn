@@ -31,7 +31,7 @@ public class YahooParser extends SearchEngineDOMParser {
 	 * @see org.jaden.websterm.parser.dom.SearchEngineDOMParser#parseDocument(Element)
 	 */
 	@Override
-	public List<SearchResult> parseDocument(Element root) {
+	public List<SearchResult> parseDocument() {
 		List<SearchResult> results = new ArrayList<SearchResult>();
 		Element body = (Element) root.getElementsByTagName("body").item(0);
 

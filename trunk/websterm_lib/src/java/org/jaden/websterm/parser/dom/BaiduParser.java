@@ -31,7 +31,7 @@ public class BaiduParser extends SearchEngineDOMParser {
 	 * @see org.jaden.websterm.parser.dom.SearchEngineDOMParser#parseDocument(org.w3c.dom.Element)
 	 */
 	@Override
-	public List<SearchResult> parseDocument(Element root) {
+	public List<SearchResult> parseDocument() {
 		List<SearchResult> results = new ArrayList<SearchResult>();
 		Element body = (Element) root.getElementsByTagName("body").item(0);
 

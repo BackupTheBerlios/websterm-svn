@@ -30,19 +30,19 @@ import org.junit.Test;
  * @author Jack Shen
  */
 public class DefaultSearchEngineWrapperTest {
-	private DefaultSearchEngineWrapper testWrapper;
+	private ParserSearchEngineWrapper testWrapper;
 
 	/**
 	 * @throws java.lang.Exception
 	 */
 	@Before
 	public void setUp() throws Exception {
-		testWrapper = new DefaultSearchEngineWrapper();
+		testWrapper = new ParserSearchEngineWrapper();
 	}
 
 	/**
 	 * Test method for
-	 * {@link org.jaden.websterm.h$ttp.DefaultSearchEngineWrapper#getSearchResults(org.jaden.websterm.config.SearchContext)}.
+	 * {@link org.jaden.websterm.h$ttp.ParserSearchEngineWrapper#getSearchResults(org.jaden.websterm.config.SearchContext)}.
 	 */
 	@Test
 	public void testGetSearchResults() {
