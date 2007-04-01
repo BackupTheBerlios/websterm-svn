@@ -12,12 +12,36 @@ tokens {
 	LEFT_PAREN = "(";
 	RIGHT_PAREN = ")";
 	COLON = ":";
+	NOT = "!";
+	CONFIG_HEADER = "[Config]";
+	RULE_HEADER = "[Rules]";
+	ASSIGN = "=";
+	AND = "and";
+	OR = "or";
 }
 
-rule : RULE! ID LEFT_PAREN params RIGHT_PAREN COLON
+expr : CONFIG_HEADER
+	(config)+
+	RULE_HEADER
+	(rule)+
 	;
 
-params : ("high"|"medium"|"low" ",")? ("document"|"sentence"|"word")?
+config : ID ASSIGN^ VALUE;
+
+rule : RULE ID LEFT_PAREN^ params RIGHT_PAREN^ COLON
+	impl
+	;
+
+params : ("high"|"medium"|"low")
+	;
+
+impl : (NOT)? (func (AND | OR)?)+
+	;
+
+func : ID LEFT_PAREN^ func_params RIGHT_PAREN^
+	;
+
+func_params : ((ID | NUM) (",")?)*
 	;
 
 class WebstermLexer extends Lexer;
@@ -27,4 +51,10 @@ WS : ( ' ' | '\t' | '\n' { newline(); } | '\r' )+
 	;
 
 ID : 'a'..'z' ('a'..'z' | '0'..'9')*
+	;
+
+VALUE : ('a'..'z' | '0'..'9' | '.' | ':' | '/' | '\\' )+
+	;
+
+NUM : ('0'..'9')* ('.' ('0'..'9')*)?
 	;

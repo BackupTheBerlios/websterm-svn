@@ -4,20 +4,21 @@
 package org.jaden.websterm.lib.model;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * @author jack
  *
  */
-public class TextData extends Model implements Serializable {
+public class InputData extends Model implements Serializable {
 	private String name;
 
-	private String data;
+	private List<String> data;
 
 	/**
 	 * @return the data
 	 */
-	public String getData() {
+	public List<String> getData() {
 		return data;
 	}
 
@@ -25,7 +26,7 @@ public class TextData extends Model implements Serializable {
 	 * @param data
 	 *            the data to set
 	 */
-	public void setData(String data) {
+	public void setData(List<String> data) {
 		this.data = data;
 	}
 
