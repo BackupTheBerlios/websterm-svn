@@ -12,20 +12,28 @@
 	<stripes:layout-component name="head" />
 	</head>
 	<body>
-	<stripes:layout-component name="header">
+	<div id="pageHeader"><stripes:layout-component name="header">
 		<table cellpadding="0" cellspacing="0" border="0" width="100%">
 			<tr>
-				<td width="30%">j</td>
-				<td width="70%">j</td>
+				<td width="30%"><img
+					src="/websterm_client/images/websterm_logo.jpg" /></td>
+				<td width="70%">
+				<div id="menuList">
+				<ul>
+					<li id="setupMenuItem"><a href="/websterm_client/Setup.action">Setup</a></li>
+					<li id="adminMenuItem"><a href="javascript://nop/">Admin</a></li>
+				</ul>
+				</div>
+				</td>
 			</tr>
 		</table>
-	</stripes:layout-component>
+	</stripes:layout-component></div>
 
 	<div id="pageContent"><stripes:layout-component name="contents" /></div>
 
-	<stripes:layout-component name="footer">
+	<div id="pageFooter"><stripes:layout-component name="footer">
 
-	</stripes:layout-component>
+	</stripes:layout-component></div>
 	</body>
 	</html>
 </stripes:layout-definition>
