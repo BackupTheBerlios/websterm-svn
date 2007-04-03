@@ -15,9 +15,9 @@
 	<div id="pageHeader"><stripes:layout-component name="header">
 		<table cellpadding="0" cellspacing="0" border="0" width="100%">
 			<tr>
-				<td width="30%"><img
+				<td width="20%" style="border-right: 1px solid gray;"><img
 					src="/websterm_client/images/websterm_logo.jpg" /></td>
-				<td width="70%">
+				<td width="80%">
 				<div id="menuList">
 				<ul>
 					<li id="setupMenuItem"><a href="/websterm_client/Setup.action">Setup</a></li>
@@ -31,9 +31,7 @@
 
 	<div id="pageContent"><stripes:layout-component name="contents" /></div>
 
-	<div id="pageFooter"><stripes:layout-component name="footer">
-
-	</stripes:layout-component></div>
+	<div id="pageFooter"><stripes:layout-component name="footer" /></div>
 	</body>
 	</html>
 </stripes:layout-definition>

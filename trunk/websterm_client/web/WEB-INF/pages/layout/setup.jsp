@@ -6,13 +6,13 @@
 		<stripes:layout-component name="contents">
 			<table cellpadding="0" cellspacing="0" width="100%" border="0">
 				<tr>
-					<td width="30%">
+					<td width="20%" style="border-right: 1px solid gray;">
 					<ul>
-						<li><a href="javascript://nop/">Configuration</a></li>
+						<li><a href="/websterm_client/Setup.action">Configuration</a></li>
 						<li><a href="javascript://nop/">View Rules</a></li>
 					</ul>
 					</td>
-					<td width="70%"><stripes:layout-component name="mainContents" /></td>
+					<td width="80%" class="mainContents">${mainContents}</td>
 				</tr>
 			</table>
 		</stripes:layout-component>

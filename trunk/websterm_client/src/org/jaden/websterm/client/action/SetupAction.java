@@ -53,7 +53,7 @@ public class SetupAction extends BaseAction {
 		IOUtils.closeQuietly(outStream);
 		IOUtils.closeQuietly(stream);
 
-		return new ForwardResolution("/WEB-INF/pages/setup/uploaded.jsp");
+		return new ForwardResolution("/WEB-INF/pages/setup/rules.jsp");
 	}
 
 	/**

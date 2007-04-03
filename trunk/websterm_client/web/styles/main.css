@@ -1,4 +1,35 @@
 body {
-	margin: 2px;
+	margin: 0px;
 	font-family: helvetica;
+}
+
+#pageHeader {
+	border-bottom: 1px solid gray;
+}
+
+#pageContent {
+
+}
+
+#pageFooter {
+
+}
+
+.mainContents {
+	padding-top: 10px;
+}
+
+#configDiv {
+	margin-top: 10px;
+}
+
+.blockTitle {
+	padding-left: 10px;
+	background-color: #65b555;
+	border-top: 1px solid gray;
+	border-bottom: 1px solid gray;
+}
+
+.blockBody {
+	padding-left: 10px;
 }

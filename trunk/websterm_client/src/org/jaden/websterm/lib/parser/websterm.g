@@ -2,7 +2,7 @@ header {
 package org.jaden.websterm.lib.parser;
 }
 
-class WebstermParser extends Parser;
+class WebstermDefinitionParser extends Parser;
 options {
 
 }
@@ -20,13 +20,8 @@ tokens {
 	OR = "or";
 }
 
-expr : CONFIG_HEADER
-	(config)+
-	RULE_HEADER
-	(rule)+
+expr : (rule)+
 	;
-
-config : ID ASSIGN^ VALUE;
 
 rule : RULE ID LEFT_PAREN^ params RIGHT_PAREN^ COLON
 	impl
@@ -41,10 +36,10 @@ impl : (NOT)? (func (AND | OR)?)+
 func : ID LEFT_PAREN^ func_params RIGHT_PAREN^
 	;
 
-func_params : ((ID | NUM) (",")?)*
+func_params : ((STRING | NUM) (",")?)*
 	;
 
-class WebstermLexer extends Lexer;
+class WebstermDefinitionLexer extends Lexer;
 
 WS : ( ' ' | '\t' | '\n' { newline(); } | '\r' )+
 	{ $setType(Token.SKIP); }
@@ -53,7 +48,7 @@ WS : ( ' ' | '\t' | '\n' { newline(); } | '\r' )+
 ID : 'a'..'z' ('a'..'z' | '0'..'9')*
 	;
 
-VALUE : ('a'..'z' | '0'..'9' | '.' | ':' | '/' | '\\' )+
+STRING : '"' ('a'..'z' | 'A'..'Z' | '0'..'9' | '.' | ':' | '/' | '\\' )+ '"'
 	;
 
 NUM : ('0'..'9')* ('.' ('0'..'9')*)?
