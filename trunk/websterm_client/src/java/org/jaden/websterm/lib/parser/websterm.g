@@ -4,7 +4,8 @@ package org.jaden.websterm.lib.parser;
 
 class WebstermDefinitionParser extends Parser;
 options {
-
+	buildAST = true;
+	k = 4;
 }
 
 tokens {
@@ -12,6 +13,9 @@ tokens {
 	NOT = "not";
 	AND = "and";
 	OR = "or";
+	HIGH = "high";
+	MEDIUM = "medium";
+	LOW = "low";
 }
 
 expr : (rule)+
@@ -24,16 +28,16 @@ rule : rule_decl COLON^
 rule_decl : RULE! ID LPAREN! params RPAREN!
 	;
 
-params : ("high"|"medium"|"low")
+params : (HIGH|MEDIUM|LOW)
 	;
 
-impl : (NOT)? (func (AND | OR)?)+ ";"
+impl : (NOT)? (func (AND | OR)?)+ SEMICOLON!
 	;
 
 func : ID LPAREN! func_params RPAREN!
 	;
 
-func_params : ((STRING | NUM) (","!)?)*
+func_params : ((STRING | NUM) (COMMA!)?)*
 	;
 
 class WebstermDefinitionLexer extends Lexer;
@@ -57,6 +61,20 @@ options {
 	paraphrase = ":";
 }
 	: ':'
+	;
+
+SEMICOLON
+options {
+	paraphrase = ";";
+}
+	: ';'
+	;
+
+COMMA
+options {
+	paraphrase = ",";
+}
+	: ','
 	;
 
 WS : ( ' ' | '\t' | '\n' { newline(); } | '\r' )+
