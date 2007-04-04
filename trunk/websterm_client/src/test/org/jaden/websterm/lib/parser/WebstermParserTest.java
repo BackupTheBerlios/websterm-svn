@@ -18,10 +18,12 @@ public class WebstermParserTest {
 
 	@Test
 	public void testParseDefinition() throws Exception {
-		String def = "rule my_rule(high):" + "not contains(0.5);"
-				+ "rule my_rule2(medium):" + "alike(\"word1\", 0.4, 0.3);"
+		String def = "rule my_rule(high):"
+				+ "not contains(0.5);"
+				+ "rule my_rule2(medium):"
+				+ "alike(\"word1\", 0.4, 0.3);"
 				+ "rule my_rule3(low):"
-				+ "not allowed(0.4, 3.4, \"word2\") and contains(3.4);";
+				+ "not allowed(0.4, 3.4, \"word2\") and contains(3.4) or contains(3);";
 		List<Rule> rules = parser.parseDefinition(def);
 		Assert.assertNotNull(rules);
 
