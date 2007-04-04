@@ -28,13 +28,13 @@ rule : rule_decl COLON^
 rule_decl : RULE! ID LPAREN! params RPAREN!
 	;
 
-params : (HIGH|MEDIUM|LOW)
+params : (HIGH|MEDIUM|LOW)?
 	;
 
-impl : (NOT)? (func (AND | OR)?)+ SEMICOLON!
+impl : (((NOT^)? func) (AND^ | OR^)?)+ SEMICOLON!
 	;
 
-func : ID LPAREN! func_params RPAREN!
+func : ID^ LPAREN! func_params RPAREN!
 	;
 
 func_params : ((STRING | NUM) (COMMA!)?)*

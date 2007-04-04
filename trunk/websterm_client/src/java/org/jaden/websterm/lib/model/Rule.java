@@ -4,6 +4,7 @@
 package org.jaden.websterm.lib.model;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * @author jack
@@ -14,22 +15,7 @@ public class Rule implements Serializable {
 
 	private String priority;
 
-	private String definition;
-
-	/**
-	 * @return the definition
-	 */
-	public String getDefinition() {
-		return definition;
-	}
-
-	/**
-	 * @param definition
-	 *            the definition to set
-	 */
-	public void setDefinition(String definition) {
-		this.definition = definition;
-	}
+	private List<Function> functions;
 
 	/**
 	 * @return the name
@@ -59,5 +45,20 @@ public class Rule implements Serializable {
 	 */
 	public void setPriority(String priority) {
 		this.priority = priority;
+	}
+
+	/**
+	 * @return the functions
+	 */
+	public List<Function> getFunctions() {
+		return functions;
+	}
+
+	/**
+	 * @param functions
+	 *            the functions to set
+	 */
+	public void setFunctions(List<Function> functions) {
+		this.functions = functions;
 	}
 }
