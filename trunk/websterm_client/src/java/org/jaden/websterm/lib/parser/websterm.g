@@ -9,13 +9,7 @@ options {
 
 tokens {
 	RULE = "rule";
-	LEFT_PAREN = "(";
-	RIGHT_PAREN = ")";
-	COLON = ":";
-	NOT = "!";
-	CONFIG_HEADER = "[Config]";
-	RULE_HEADER = "[Rules]";
-	ASSIGN = "=";
+	NOT = "not";
 	AND = "and";
 	OR = "or";
 }
@@ -23,29 +17,53 @@ tokens {
 expr : (rule)+
 	;
 
-rule : RULE ID LEFT_PAREN^ params RIGHT_PAREN^ COLON
+rule : rule_decl COLON^
 	impl
+	;
+
+rule_decl : RULE! ID LPAREN! params RPAREN!
 	;
 
 params : ("high"|"medium"|"low")
 	;
 
-impl : (NOT)? (func (AND | OR)?)+
+impl : (NOT)? (func (AND | OR)?)+ ";"
 	;
 
-func : ID LEFT_PAREN^ func_params RIGHT_PAREN^
+func : ID LPAREN! func_params RPAREN!
 	;
 
-func_params : ((STRING | NUM) (",")?)*
+func_params : ((STRING | NUM) (","!)?)*
 	;
 
 class WebstermDefinitionLexer extends Lexer;
+
+LPAREN
+options {
+	paraphrase = "(";
+}
+	: '('
+	;
+
+RPAREN
+options {
+	paraphrase = ")";
+}
+	: ')'
+	;
+
+COLON
+options {
+	paraphrase = ":";
+}
+	: ':'
+	;
 
 WS : ( ' ' | '\t' | '\n' { newline(); } | '\r' )+
 	{ $setType(Token.SKIP); }
 	;
 
-ID : 'a'..'z' ('a'..'z' | '0'..'9')*
+ID : 'a'..'z' ('a'..'z' | '0'..'9' | '_')*
 	;
 
 STRING : '"' ('a'..'z' | 'A'..'Z' | '0'..'9' | '.' | ':' | '/' | '\\' )+ '"'
