@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="websterm" basedir=".">
+	<property file="build.properties" />
+
+	<path id="master.cp">
+		<fileset dir="${lib.dir}">
+			<include name="*.jar" />
+		</fileset>
+		<pathelement location="${bin.java}" />
+		<pathelement location="${bin.test}" />
+	</path>
+
+	<target name="init">
+		<mkdir dir="${src.java}" />
+		<mkdir dir="${src.test}" />
+
+		<mkdir dir="${web.inf}" />
+		<mkdir dir="${lib.dir}" />
+	</target>
+
+	<target name="compile">
+		<mkdir dir="${bin.java}" />
+		<javac source="1.5"
+		       target="1.5"
+		       srcdir="${src.java}"
+		       destdir="${bin.java}"
+		       classpathref="master.cp" />
+		<copy todir="${bin.java}">
+			<fileset dir="${src.java}">
+				<exclude name="**/*.java" />
+			</fileset>
+		</copy>
+	</target>
+
+	<target name="test.compile">
+		<mkdir dir="${bin.test}" />
+		<javac source="1.5"
+		       target="1.5"
+		       srcdir="${src.test}"
+		       destdir="${bin.test}"
+		       classpathref="master.cp" />
+		<copy todir="${bin.test}">
+			<fileset dir="${src.test}">
+				<exclude name="**/*.java" />
+			</fileset>
+		</copy>
+	</target>
+
+	<target name="test">
+		<mkdir dir="${doc.test}" />
+		<junit printsummary="yes" haltonfailure="yes">
+			<classpath refid="master.cp" />
+
+			<formatter type="plain" usefile="no" />
+			<formatter type="xml" usefile="yes" />
+
+			<batchtest todir="${doc.test}" fork="yes">
+				<fileset dir="${src.test}">
+					<include name="**/*Test.java" />
+				</fileset>
+			</batchtest>
+		</junit>
+	</target>
+</project>
