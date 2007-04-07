@@ -18,6 +18,11 @@
 		<mkdir dir="${lib.dir}" />
 	</target>
 
+	<target name="clean">
+		<delete dir="${bin.java}" />
+		<delete dir="${bin.test}" />
+	</target>
+
 	<target name="compile">
 		<mkdir dir="${bin.java}" />
 		<javac source="1.5"

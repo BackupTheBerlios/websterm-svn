@@ -22,7 +22,7 @@ public class WebstermParserTest {
 				+ "not contains(0.5);"
 				+ "rule my_rule2(medium):"
 				+ "alike(\"word1\", 0.4, 0.3);"
-				+ "rule my_rule3(low):"
+				+ "rule my_rule3():"
 				+ "not allowed(0.4, 3.4, \"word2\") and contains(3.4) or contains(3);";
 		List<Rule> rules = parser.parseDefinition(def);
 		Assert.assertNotNull(rules);
@@ -33,11 +33,14 @@ public class WebstermParserTest {
 		Assert.assertEquals("high", rule.getPriority());
 
 		List<Function> functions = rule.getFunctions();
-		Assert.assertNotNull(functions);
 		Assert.assertEquals(1, functions.size());
 
 		rule = rules.get(1);
 		Assert.assertEquals("my_rule2", rule.getName());
+		Assert.assertEquals("medium", rule.getPriority());
+
+		rule = rules.get(2);
+		Assert.assertEquals("my_rule3", rule.getName());
 		Assert.assertEquals("medium", rule.getPriority());
 	}
 }

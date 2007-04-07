@@ -7,6 +7,7 @@ import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.jaden.websterm.lib.datastructure.TreeNode;
 import org.jaden.websterm.lib.model.Function;
 import org.jaden.websterm.lib.model.Rule;
 
@@ -42,25 +43,67 @@ public class WebstermParser {
 			String ruleName = child.getText();
 			rule.setName(ruleName);
 
-			List<Function> functions = new ArrayList<Function>();
-
 			// Get the priority if it exists
-			child = child.getNextSibling();
-			int type = child.getType();
-			if (type == WebstermDefinitionParserTokenTypes.HIGH
-					|| type == WebstermDefinitionParserTokenTypes.MEDIUM
-					|| type == WebstermDefinitionParserTokenTypes.LOW) {
-				String priority = child.getText();
+			AST priorityNode = child.getFirstChild();
+			if (priorityNode != null) {
+				String priority = priorityNode.getText();
 				rule.setPriority(priority);
-			} else if (type == WebstermDefinitionParserTokenTypes.NOT) {
-				Function func = new Function();
-				func.setReverse(true);
+			} else {
+				rule.setPriority(Rule.MEDIUM_PRIORITY);
 			}
 
+			AST ruleImpl = child.getNextSibling();
+			List<Function> functions = new ArrayList<Function>();
+
+			TreeNode root = new TreeNode();
+			parseRuleImplementation(functions, root, ruleImpl);
+
+			rule.setFunctions(functions);
 			rules.add(rule);
 			ast = (CommonAST) ast.getNextSibling();
 		}
 
 		return rules;
+	}
+
+	private void parseRuleImplementation(List<Function> functions,
+			TreeNode parent, AST implNode) {
+		int type = implNode.getType();
+		if (type == WebstermDefinitionParserTokenTypes.AND
+				|| type == WebstermDefinitionParserTokenTypes.OR) {
+			parent
+					.setValue(type == WebstermDefinitionParserTokenTypes.AND ? "and"
+							: "or");
+			TreeNode leftNode = new TreeNode();
+			parent.setLeftChild(leftNode);
+			AST leftChild = implNode.getFirstChild();
+			parseRuleImplementation(functions, leftNode, leftChild);
+
+			TreeNode rightNode = new TreeNode();
+			parent.setRightChild(rightNode);
+			AST rightChild = leftChild.getNextSibling();
+			parseRuleImplementation(functions, rightNode, rightChild);
+		} else {
+			Function function = new Function();
+			AST functionAST = implNode;
+			if (type == WebstermDefinitionParserTokenTypes.NOT) {
+				function.setReverse(true);
+				functionAST = implNode.getFirstChild();
+			}
+
+			function.setName(functionAST.getText());
+
+			List<String> params = new ArrayList<String>();
+			AST paramsAST = functionAST.getFirstChild();
+			while (paramsAST != null) {
+				String parameter = paramsAST.getText();
+				params.add(parameter);
+				paramsAST = paramsAST.getNextSibling();
+			}
+			function.setParams(params);
+
+			parent.setValue(function);
+			functions.add(function);
+		}
 	}
 }

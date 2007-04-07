@@ -10,6 +10,12 @@ import java.util.List;
  *
  */
 public class Function {
+	public static final String AND = "and";
+
+	public static final String OR = "or";
+
+	public static final String END = "end";
+
 	private String name;
 
 	private List<String> params;

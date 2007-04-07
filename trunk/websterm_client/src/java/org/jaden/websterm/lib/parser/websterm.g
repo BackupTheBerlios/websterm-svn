@@ -25,7 +25,7 @@ rule : rule_decl COLON^
 	impl
 	;
 
-rule_decl : RULE! ID LPAREN! params RPAREN!
+rule_decl : RULE! ID^ LPAREN! params RPAREN!
 	;
 
 params : (HIGH|MEDIUM|LOW)?

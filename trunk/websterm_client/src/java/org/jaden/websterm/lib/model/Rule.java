@@ -6,16 +6,26 @@ package org.jaden.websterm.lib.model;
 import java.io.Serializable;
 import java.util.List;
 
+import org.jaden.websterm.lib.datastructure.TreeNode;
+
 /**
  * @author jack
  *
  */
 public class Rule implements Serializable {
+	public static final String HIGH_PRIORITY = "high";
+
+	public static final String MEDIUM_PRIORITY = "medium";
+
+	public static final String LOW_PRIORITY = "low";
+
 	private String name;
 
 	private String priority;
 
 	private List<Function> functions;
+
+	private TreeNode functionsTree;
 
 	/**
 	 * @return the name
@@ -60,5 +70,20 @@ public class Rule implements Serializable {
 	 */
 	public void setFunctions(List<Function> functions) {
 		this.functions = functions;
+	}
+
+	/**
+	 * @return the functionTree
+	 */
+	public TreeNode getFunctionsTree() {
+		return functionsTree;
+	}
+
+	/**
+	 * @param functionTree
+	 *            the functionTree to set
+	 */
+	public void setFunctionsTree(TreeNode functionTree) {
+		this.functionsTree = functionTree;
 	}
 }
