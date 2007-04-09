@@ -13,6 +13,16 @@
 		<welcome-file>default.jsp</welcome-file>
 	</welcome-file-list>
 
+	<listener>
+		<listener-class>
+			org.springframework.web.context.ContextLoaderListener
+		</listener-class>
+	</listener>
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>classpath:applicationContext.xml</param-value>
+	</context-param>
+
 	<filter>
 		<filter-name>StripesFilter</filter-name>
 		<filter-class>
@@ -30,6 +40,13 @@
 			<param-name>MultipartWrapper.Class</param-name>
 			<param-value>
 				net.sourceforge.stripes.controller.multipart.CommonsMultipartWrapper
+			</param-value>
+		</init-param>
+		<init-param>
+			<param-name>Interceptor.Classes</param-name>
+			<param-value>
+				net.sourceforge.stripes.integration.spring.SpringInterceptor,
+				net.sourceforge.stripes.controller.BeforeAfterMethodInterceptor
 			</param-value>
 		</init-param>
 	</filter>

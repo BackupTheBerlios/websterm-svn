@@ -31,7 +31,6 @@ public class ContainsFunction extends AbstractFunctionImpl {
 
 	@Override
 	protected boolean validate(List<String> parameters) {
-		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 }

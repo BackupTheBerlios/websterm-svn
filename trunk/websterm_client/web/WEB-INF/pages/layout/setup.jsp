@@ -9,7 +9,9 @@
 					<td width="20%" style="border-right: 1px solid gray;">
 					<ul>
 						<li><a href="/websterm_client/Setup.action">Configuration</a></li>
-						<li><a href="javascript://nop/">View Rules</a></li>
+						<li><stripes:link
+							beanclass="org.jaden.websterm.client.action.SetupAction"
+							event="viewRules">View Rules</stripes:link></li>
 					</ul>
 					</td>
 					<td width="80%" class="mainContents">${mainContents}</td>
