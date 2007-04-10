@@ -4,4 +4,11 @@
 	<bean id="webstermParser"
 		class="org.jaden.websterm.lib.parser.WebstermParser">
 	</bean>
+
+	<bean id="functionEngine"
+		class="org.jaden.websterm.lib.function.FunctionRegistrationEngine">
+		<constructor-arg>
+			<value>classpath:functions.xml</value>
+		</constructor-arg>
+	</bean>
 </beans>

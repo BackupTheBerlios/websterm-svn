@@ -6,13 +6,17 @@
 		<stripes:layout-component name="contents">
 			<table cellpadding="0" cellspacing="0" width="100%" border="0">
 				<tr>
-					<td width="20%" style="border-right: 1px solid gray;">
-					<ul>
+					<td width="20%"
+						style="border-right: 1px solid #808080; padding-top: 10px;"
+						align="right" valign="top">
+					<div id="sidemenucontainer">
+					<ul id="sidemenu">
 						<li><a href="/websterm_client/Setup.action">Configuration</a></li>
 						<li><stripes:link
 							beanclass="org.jaden.websterm.client.action.SetupAction"
 							event="viewRules">View Rules</stripes:link></li>
 					</ul>
+					</div>
 					</td>
 					<td width="80%" class="mainContents">${mainContents}</td>
 				</tr>

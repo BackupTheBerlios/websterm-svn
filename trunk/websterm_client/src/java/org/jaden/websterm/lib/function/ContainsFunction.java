@@ -1,7 +1,7 @@
 /**
  *
  */
-package org.jaden.websterm.lib.rule;
+package org.jaden.websterm.lib.function;
 
 import java.util.List;
 

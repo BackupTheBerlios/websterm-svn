@@ -15,11 +15,12 @@
 	<div id="pageHeader"><stripes:layout-component name="header">
 		<table cellpadding="0" cellspacing="0" border="0" width="100%">
 			<tr>
-				<td width="20%" style="border-right: 1px solid gray;"><img
+				<td width="20%"
+					style="border-right: 1px solid #808080; border-bottom: 1px solid #808080;"><img
 					src="/websterm_client/images/websterm_logo.jpg" /></td>
-				<td width="80%">
+				<td width="80%" valign="bottom">
 				<div id="menuList">
-				<ul>
+				<ul id="navlist">
 					<li id="setupMenuItem"><a href="/websterm_client/Setup.action">Setup</a></li>
 					<li id="adminMenuItem"><a href="javascript://nop/">Admin</a></li>
 				</ul>

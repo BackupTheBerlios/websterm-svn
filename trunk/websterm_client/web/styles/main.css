@@ -3,10 +3,6 @@ body {
 	font-family: helvetica;
 }
 
-#pageHeader {
-	border-bottom: 1px solid gray;
-}
-
 #pageContent {
 
 }
@@ -32,4 +28,95 @@ body {
 
 .blockBody {
 	padding-left: 10px;
+}
+
+/* Navigation Bar */
+ul#navlist {
+	list-style-type: none;
+	padding-bottom: 24px;
+	border-bottom: 1px solid #808080;
+	margin: 0;
+	font: bold 12px verdana, helvetica, arial, sans-serif;
+}
+
+ul#navlist li {
+	float: left;
+	height: 21px;
+	background-color: #cfc;
+	margin: 2px 2px 0 2px;
+	border: 1px solid #808080;
+}
+
+ul#navlist li.active {
+	border-bottom: 1px solid #fff;
+	background-color: #fff;
+}
+
+li.active a {
+	color: #000;
+}
+
+#navlist a {
+	float: left;
+	display: block;
+	color: #666677;
+	background-color: #ccccdd;
+	text-decoration: none;
+	padding: 4px 8px 4px 8px;
+	text-decoration: none;
+}
+
+#navlist a:hover {
+	border-color: #808080;
+	color: #ffffff;
+	background: #000d33;
+}
+
+/* Side Menu Bar */
+ul#sidemenu {
+	width: 250px;
+	\width: 252px;
+	w\idth: 250px;
+	padding: 0px;
+	border: 1px solid #808080;
+	border-top: 0px;
+	border-right: 0px;
+	margin: 0px;
+	font: bold 12px verdana, helvetica, arial, sans-serif;
+	background: #808080;
+	margin: 0px;
+}
+
+ul#sidemenu li {
+	list-style: none;
+	margin: 0px;
+	border: 0px;
+	border-top: 1px solid #808080;
+}
+
+ul#sidemenu li a {
+	display: block;
+	width: 214px;
+	\width: 252px;
+	w\idth: 214px;
+	padding: 4px 8px 4px 8px;
+	border: 0px;
+	border-left: 20px solid #aaaabb;
+	background: #ccccdd;
+	text-decoration: none;
+	text-align: right;
+}
+
+ul#sidemenu li a:link {
+	color: #666677;
+}
+
+div#sidemenucontainer li a:visited {
+	color: #666677;
+}
+
+ul#sidemenu li a:hover {
+	border-color: #ff9000;
+	color: #ffffff;
+	background: #000d33;
 }
