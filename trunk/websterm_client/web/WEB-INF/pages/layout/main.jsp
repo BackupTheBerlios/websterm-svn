@@ -9,6 +9,9 @@
 	<title>Websterm</title>
 	<link rel="stylesheet" href="/websterm_client/styles/main.css"
 		type="text/css" />
+	<script type="text/javascript"
+		src="/websterm_client/scripts/prototype/prototype.js"></script>
+	<script type="text/javascript" src="/websterm_client/scripts/main.js"></script>
 	<stripes:layout-component name="head" />
 	</head>
 	<body>

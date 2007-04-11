@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dialects>
+	<dialect>
+		<vendor>DB2</vendor>
+		<class>org.hibernate.dialect.DB2Dialect</class>
+	</dialect>
+	<dialect>
+		<vendor>DB2 AS/400</vendor>
+		<class>org.hibernate.dialect.DB2400Dialect</class>
+	</dialect>
+	<dialect>
+		<vendor>DB2 OS390</vendor>
+		<class>org.hibernate.dialect.DB2390Dialect</class>
+	</dialect>
+	<dialect>
+		<vendor>PostgreSQL</vendor>
+		<class>org.hibernate.dialect.PostgreSQLDialect</class>
+	</dialect>
+	<dialect>
+		<vendor>MySQL</vendor>
+		<class>org.hibernate.dialect.MySQLDialect</class>
+	</dialect>
+	<dialect>
+		<vendor>MySQL with InnoDB</vendor>
+		<class>org.hibernate.dialect.MySQLInnoDBDialect</class>
+	</dialect>
+	<dialect>
+		<vendor>MySQL with MyISAM</vendor>
+		<class>org.hibernate.dialect.MySQLMyISAMDialect</class>
+	</dialect>
+	<dialect>
+		<vendor>Oracle (any version)</vendor>
+		<class>org.hibernate.dialect.OracleDialect</class>
+	</dialect>
+	<dialect>
+		<vendor>Oracle 9i/10g</vendor>
+		<class>org.hibernate.dialect.Oracle9Dialect</class>
+	</dialect>
+	<dialect>
+		<vendor>Sybase Anywhere</vendor>
+		<class>org.hibernate.dialect.SybaseAnywhereDialect</class>
+	</dialect>
+	<dialect>
+		<vendor>Sybase</vendor>
+		<class>org.hibernate.dialect.SybaseDialect</class>
+	</dialect>
+	<dialect>
+		<vendor>Microsoft SQL Server</vendor>
+		<class>org.hibernate.dialect.SQLServerDialect</class>
+	</dialect>
+	<dialect>
+		<vendor>SAP DB</vendor>
+		<class>org.hibernate.dialect.SAPDBDialect</class>
+	</dialect>
+	<dialect>
+		<vendor>Informix</vendor>
+		<class>org.hibernate.dialect.InformixDialect</class>
+	</dialect>
+	<dialect>
+		<vendor>HypersonicSQL</vendor>
+		<class>org.hibernate.dialect.HSQLDialect</class>
+	</dialect>
+	<dialect>
+		<vendor>Ingres</vendor>
+		<class>org.hibernate.dialect.IngresDialect</class>
+	</dialect>
+	<dialect>
+		<vendor>Progress</vendor>
+		<class>org.hibernate.dialect.ProgressDialect</class>
+	</dialect>
+	<dialect>
+		<vendor>Mckoi SQL</vendor>
+		<class>org.hibernate.dialect.MckoiDialect</class>
+	</dialect>
+	<dialect>
+		<vendor>Pointbase</vendor>
+		<class>org.hibernate.dialect.PointbaseDialect</class>
+	</dialect>
+	<dialect>
+		<vendor>Interbase</vendor>
+		<class>org.hibernate.dialect.InterbaseDialect</class>
+	</dialect>
+	<dialect>
+		<vendor>FrontBase</vendor>
+		<class>org.hibernate.dialect.FrontbaseDialect</class>
+	</dialect>
+	<dialect>
+		<vendor>Firebird</vendor>
+		<class>org.hibernate.dialect.FirebirdDialect</class>
+	</dialect>
+</dialects>
