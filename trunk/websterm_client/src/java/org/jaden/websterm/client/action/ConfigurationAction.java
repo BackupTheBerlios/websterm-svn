@@ -3,6 +3,7 @@
  */
 package org.jaden.websterm.client.action;
 
+import java.io.FileWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -12,11 +13,16 @@ import java.util.List;
 import net.sourceforge.stripes.action.DefaultHandler;
 import net.sourceforge.stripes.action.ForwardResolution;
 import net.sourceforge.stripes.action.Resolution;
+import net.sourceforge.stripes.action.StreamingResolution;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.dom4j.Document;
+import org.dom4j.io.OutputFormat;
+import org.dom4j.io.XMLWriter;
 import org.jaden.websterm.lib.model.DatabaseConfiguration;
 import org.jaden.websterm.lib.model.FileConfiguration;
+import org.jaden.websterm.lib.model.DatabaseConfiguration.DatabaseField;
 
 /**
  * @author jack
@@ -33,11 +39,15 @@ public class ConfigurationAction extends BaseAction {
 
 	private FileConfiguration fileConfiguration;
 
-	private List<String> fields;
+	private List<DatabaseField> fields;
 
 	@DefaultHandler
-	public Resolution getConfigurationDetails() {
-		return new ForwardResolution("/WEB-INF/pages/setup/configuration.jsp");
+	public Resolution getDbConfigDetails() {
+		return new ForwardResolution("/WEB-INF/pages/setup/dbconfig.jsp");
+	}
+
+	public Resolution getFileConfigDetails() {
+		return new ForwardResolution("/WEB-INF/pages/setup/fileconfig.jsp");
 	}
 
 	public Resolution fetchFields() throws Exception {
@@ -46,17 +56,40 @@ public class ConfigurationAction extends BaseAction {
 				.getConnectionUrl(), databaseConfiguration.getUsername(),
 				databaseConfiguration.getPassword());
 
-		ResultSet rs = conn.getMetaData().getTables(null, "%", "%",
-				new String[] { "TABLE" });
-		List<String> catalogs = new ArrayList<String>();
+		ResultSet rs = conn.getMetaData().getColumns(null, "%", "%", "%");
+		fields = new ArrayList<DatabaseField>();
 		while (rs.next()) {
-			String catalog = rs.getString("TABLE_NAME");
-			catalogs.add(catalog);
+			String table = rs.getString("TABLE_NAME");
+			String column = rs.getString("COLUMN_NAME");
+			DatabaseField field = new DatabaseField();
+			field.setColumn(column.toUpperCase());
+			field.setTable(table.toUpperCase());
+			fields.add(field);
 		}
 
-		fields = catalogs;
+		databaseConfiguration.setFields(fields);
 
 		return new ForwardResolution("/WEB-INF/pages/setup/fields.jsp");
+	}
+
+	public Resolution configureDatabase() throws Exception {
+		Document doc = databaseConfiguration.getHibernateConfiguration();
+		String configFilePath = getContext().getServletContext().getRealPath(
+				"WEB-INF/config/hibernate.cfg.xml");
+		OutputFormat format = OutputFormat.createPrettyPrint();
+		XMLWriter writer = new XMLWriter(new FileWriter(configFilePath), format);
+		writer.write(doc);
+		writer.flush();
+
+		doc = databaseConfiguration.getFieldsConfiguration();
+		String fieldsConfigPath = getContext().getServletContext().getRealPath(
+				"WEB-INF/config/fields.xml");
+		writer = new XMLWriter(new FileWriter(fieldsConfigPath), format);
+		writer.write(doc);
+		writer.flush();
+
+		return new StreamingResolution("text/plain",
+				"Database Configuration Successfull");
 	}
 
 	/**
@@ -123,7 +156,7 @@ public class ConfigurationAction extends BaseAction {
 	/**
 	 * @return the fields
 	 */
-	public List<String> getFields() {
+	public List<DatabaseField> getFields() {
 		return fields;
 	}
 
@@ -131,7 +164,7 @@ public class ConfigurationAction extends BaseAction {
 	 * @param fields
 	 *            the fields to set
 	 */
-	public void setFields(List<String> fields) {
+	public void setFields(List<DatabaseField> fields) {
 		this.fields = fields;
 	}
 }

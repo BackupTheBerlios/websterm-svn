@@ -6,6 +6,12 @@ package org.jaden.websterm.lib.model;
 import java.io.Serializable;
 import java.util.List;
 
+import org.dom4j.Document;
+import org.dom4j.DocumentHelper;
+import org.dom4j.DocumentType;
+import org.dom4j.Element;
+import org.dom4j.dom.DOMDocumentType;
+
 /**
  * @author jack
  *
@@ -68,26 +74,71 @@ public class DatabaseConfiguration implements Serializable {
 		this.fields = fields;
 	}
 
+	public Document getHibernateConfiguration() {
+		Document doc = DocumentHelper.createDocument();
+		DocumentType docType = new DOMDocumentType();
+		docType.setPublicID("-//Hibernate/Hibernate Configuration DTD//EN");
+		docType.setSystemID("http://hibernate.sourceforge.net/hibernate"
+				+ "-configuration-3.0.dtd");
+		docType.setName("hibernate-configuration");
+		doc.setDocType(docType);
+
+		Element hibernateConfig = doc.addElement("hibernate-configuration");
+		Element sessionFactory = hibernateConfig.addElement("session-factory");
+		Element prop = sessionFactory.addElement("property");
+		prop.addAttribute("name", "hibernate.connection.driver_class");
+		prop.setText(driverClass);
+		prop = sessionFactory.addElement("property");
+		prop.addAttribute("name", "hibernate.connection.url");
+		prop.setText(connectionUrl);
+		prop = sessionFactory.addElement("property");
+		prop.addAttribute("name", "hibernate.connection.username");
+		prop.setText(username);
+		prop = sessionFactory.addElement("property");
+		prop.addAttribute("name", "hibernate.connection.password");
+		prop.setText(password);
+		prop = sessionFactory.addElement("property");
+		prop.addAttribute("name", "hibernate.dialect");
+		prop.setText(databaseType);
+
+		return doc;
+	}
+
+	public Document getFieldsConfiguration() {
+		Document doc = DocumentHelper.createDocument();
+
+		Element database = doc.addElement("fields");
+		for (DatabaseField field : fields) {
+			if (field.isSelected()) {
+				Element fieldElem = database.addElement("field");
+				fieldElem.addAttribute("table", field.getTable());
+				fieldElem.addAttribute("column", field.getColumn());
+			}
+		}
+
+		return doc;
+	}
+
 	public static class DatabaseField implements Serializable {
 		private String table;
 
-		private String field;
+		private String column;
 
-		private boolean selected;
+		private boolean selected = false;
 
 		/**
 		 * @return the field
 		 */
-		public String getField() {
-			return field;
+		public String getColumn() {
+			return column;
 		}
 
 		/**
 		 * @param field
 		 *            the field to set
 		 */
-		public void setField(String field) {
-			this.field = field;
+		public void setColumn(String field) {
+			this.column = field;
 		}
 
 		/**

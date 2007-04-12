@@ -27,23 +27,17 @@
 		<br />
 		Username: <stripes:text name="databaseConfiguration.username"></stripes:text>
 		<br />
-		Password: <stripes:text name="databaseConfiguration.password"></stripes:text>
+		Password: <stripes:password name="databaseConfiguration.password"></stripes:password>
 		<br />
 		JDBC Connection URL: <stripes:text
 			name="databaseConfiguration.connectionUrl"></stripes:text>
-		<stripes:button name="connectButton" value="Fetch Fields"
+		<input type="button" value="Fetch Fields" name="fetchFields"
 			onclick="javascript:fetchDBFields()" />
 		<br />
 		Fields to be checked:<br />
 		<div id="fieldsContainer"></div>
+		<br />
+		<stripes:submit name="configureDatabase" value="Configure"></stripes:submit>
 	</stripes:form></div>
 	</div>
-</c:if>
-<c:if test="${actionBean.file}">
-	<div id="fileConfigSection">
-	<div class="blockSubTitle">File Configuration</div>
-	<div class="blockContents"><stripes:form
-		action="/Configuration.action">
-				File directories:
-	</stripes:form></div>
 </c:if>

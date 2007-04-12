@@ -21,11 +21,12 @@
 		<div id="typeOfInputDiv"><stripes:form
 			action="/Configuration.action">
 			<stripes:checkbox name="database" id="database"
-				onchange="javascript:getConfigDetails()"></stripes:checkbox>Database
+				onchange="javascript:getDbConfigDetails()"></stripes:checkbox>Database
 			<stripes:checkbox name="file" id="file"
-				onchange="javascript:getConfigDetails()"></stripes:checkbox>File
+				onchange="javascript:getFileConfigDetails()"></stripes:checkbox>File
 		</stripes:form></div>
-		<div id="configs"></div>
+		<div id="dbConfigs"></div>
+		<div id="fileConfigs"></div>
 		</div>
 		</div>
 	</stripes:layout-component>

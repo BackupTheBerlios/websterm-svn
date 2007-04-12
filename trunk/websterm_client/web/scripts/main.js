@@ -1,15 +1,20 @@
-function getConfigDetails() {
+function getDbConfigDetails() {
 	var databaseElem = $F("database");
-	var fileElem = $F("file");
-	var params = "database=" + (databaseElem != null ? "on" : "off") +
-		"&file=" + (fileElem != null ? "on" : "off");
+	var params = "database=" + (databaseElem != null ? "on" : "off");
+	new Ajax.Updater("dbConfigs", "/websterm_client/Configuration.action?getDbConfigDetails=",
+		{parameters:params});
+}
 
-	new Ajax.Updater("configs", "/websterm_client/Configuration.action",
+function getFileConfigDetails() {
+	var fileElem = $F("file");
+	var params = "file=" + (fileElem != null ? "on" : "off");
+	new Ajax.Updater("fileConfigs", "/websterm_client/Configuration.action?getFileConfigDetails=",
 		{parameters:params});
 }
 
 function fetchDBFields() {
 	var params = Form.serialize("dbConfigForm");
-	new Ajax.Updater("fieldsContainer", "/websterm_client/Configuration.action?fetchFields",
+	params = params.replace(/configureDatabase=/g, "");
+	new Ajax.Updater("fieldsContainer", "/websterm_client/Configuration.action",
 		{parameters:params});
 }
