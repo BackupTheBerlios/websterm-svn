@@ -10,10 +10,16 @@
 		</tr>
 	</thead>
 	<tbody>
-		<c:forEach items="${actionBean.fields}" var="field" varStatus="loop">
+		<c:forEach items="${actionBean.databaseConfiguration.fields}"
+			var="field" varStatus="loop">
 			<tr>
 				<td width="10%"><input type="checkbox"
-					name="databaseConfiguration.fields[${loop.index}].selected" /></td>
+					name="databaseConfiguration.fields[${loop.index}].selected" /> <input
+					type="hidden"
+					name="databaseConfiguration.fields[${loop.index}].table"
+					value="${field.table}" /> <input type="hidden"
+					name="databaseConfiguration.fields[${loop.index}].column"
+					value="${field.column}" /></td>
 				<td width="45%"><c:out value="${field.table}"></c:out></td>
 				<td width="45%"><c:out value="${field.column}"></c:out></td>
 			</tr>

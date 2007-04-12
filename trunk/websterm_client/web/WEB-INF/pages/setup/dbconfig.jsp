@@ -9,7 +9,8 @@
 	<div id="databaseConfigSection">
 	<div class="blockSubTitle">Database Configuration</div>
 	<div class="blockContents"><stripes:form
-		action="/Configuration.action" id="dbConfigForm">
+		action="/Configuration.action" id="dbConfigForm"
+		onsubmit="submitForm('messageArea', this); return false;">
 				Type of Database: <stripes:select
 			name="databaseConfiguration.databaseType">
 			<x:forEach select="$applicationScope:dialects/dialects/*"

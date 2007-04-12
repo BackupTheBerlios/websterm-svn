@@ -40,7 +40,7 @@ public class SetupAction extends BaseAction {
 	public static final String RULEDEF_FILE_NAME = "rules.wbs";
 
 	@DefaultHandler
-	public Resolution setupIndex() {
+	public Resolution index() {
 		return new ForwardResolution("/WEB-INF/pages/setup/index.jsp");
 	}
 

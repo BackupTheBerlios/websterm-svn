@@ -25,7 +25,7 @@
 				<div id="menuList">
 				<ul id="navlist">
 					<li id="setupMenuItem"><a href="/websterm_client/Setup.action">Setup</a></li>
-					<li id="adminMenuItem"><a href="javascript://nop/">Admin</a></li>
+					<li id="adminMenuItem"><a href="/websterm_client/Admin.action">Admin</a></li>
 				</ul>
 				</div>
 				</td>

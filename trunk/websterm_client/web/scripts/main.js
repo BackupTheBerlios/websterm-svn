@@ -18,3 +18,8 @@ function fetchDBFields() {
 	new Ajax.Updater("fieldsContainer", "/websterm_client/Configuration.action",
 		{parameters:params});
 }
+
+function submitForm(msgArea, form) {
+	var params = Form.serialize(form);
+	new Ajax.Updater(msgArea, form.action, {parameters:params});
+}

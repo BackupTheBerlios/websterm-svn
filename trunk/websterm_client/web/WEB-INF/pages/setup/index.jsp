@@ -25,6 +25,7 @@
 			<stripes:checkbox name="file" id="file"
 				onchange="javascript:getFileConfigDetails()"></stripes:checkbox>File
 		</stripes:form></div>
+		<div id="messageArea"></div>
 		<div id="dbConfigs"></div>
 		<div id="fileConfigs"></div>
 		</div>

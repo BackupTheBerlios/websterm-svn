@@ -89,7 +89,7 @@ public class ConfigurationAction extends BaseAction {
 		writer.flush();
 
 		return new StreamingResolution("text/plain",
-				"Database Configuration Successfull");
+				"Database Configuration Successful");
 	}
 
 	/**
