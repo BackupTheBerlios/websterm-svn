@@ -7,3 +7,9 @@ function getConfigDetails() {
 	new Ajax.Updater("configs", "/websterm_client/Configuration.action",
 		{parameters:params});
 }
+
+function fetchDBFields() {
+	var params = Form.serialize("dbConfigForm");
+	new Ajax.Updater("fieldsContainer", "/websterm_client/Configuration.action?fetchFields",
+		{parameters:params});
+}

@@ -9,7 +9,7 @@
 	<div id="databaseConfigSection">
 	<div class="blockSubTitle">Database Configuration</div>
 	<div class="blockContents"><stripes:form
-		action="/Configuration.action">
+		action="/Configuration.action" id="dbConfigForm">
 				Type of Database: <stripes:select
 			name="databaseConfiguration.databaseType">
 			<x:forEach select="$applicationScope:dialects/dialects/*"
@@ -23,10 +23,19 @@
 			</x:forEach>
 		</stripes:select>
 		<br />
+		Driver Class: <stripes:text name="databaseConfiguration.driverClass"></stripes:text>
+		<br />
+		Username: <stripes:text name="databaseConfiguration.username"></stripes:text>
+		<br />
+		Password: <stripes:text name="databaseConfiguration.password"></stripes:text>
+		<br />
 		JDBC Connection URL: <stripes:text
 			name="databaseConfiguration.connectionUrl"></stripes:text>
+		<stripes:button name="connectButton" value="Fetch Fields"
+			onclick="javascript:fetchDBFields()" />
 		<br />
 		Fields to be checked:<br />
+		<div id="fieldsContainer"></div>
 	</stripes:form></div>
 	</div>
 </c:if>

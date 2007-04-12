@@ -15,6 +15,12 @@ public class DatabaseConfiguration implements Serializable {
 
 	private String connectionUrl;
 
+	private String driverClass;
+
+	private String username;
+
+	private String password;
+
 	private List<DatabaseField> fields;
 
 	/**
@@ -113,5 +119,50 @@ public class DatabaseConfiguration implements Serializable {
 		public void setTable(String table) {
 			this.table = table;
 		}
+	}
+
+	/**
+	 * @return the driverClass
+	 */
+	public String getDriverClass() {
+		return driverClass;
+	}
+
+	/**
+	 * @param driverClass
+	 *            the driverClass to set
+	 */
+	public void setDriverClass(String driverClass) {
+		this.driverClass = driverClass;
+	}
+
+	/**
+	 * @return the password
+	 */
+	public String getPassword() {
+		return password;
+	}
+
+	/**
+	 * @param password
+	 *            the password to set
+	 */
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	/**
+	 * @return the username
+	 */
+	public String getUsername() {
+		return username;
+	}
+
+	/**
+	 * @param username
+	 *            the username to set
+	 */
+	public void setUsername(String username) {
+		this.username = username;
 	}
 }

@@ -3,6 +3,13 @@
  */
 package org.jaden.websterm.client.action;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
+
+import net.sourceforge.stripes.action.DefaultHandler;
 import net.sourceforge.stripes.action.ForwardResolution;
 import net.sourceforge.stripes.action.Resolution;
 
@@ -26,8 +33,30 @@ public class ConfigurationAction extends BaseAction {
 
 	private FileConfiguration fileConfiguration;
 
+	private List<String> fields;
+
+	@DefaultHandler
 	public Resolution getConfigurationDetails() {
 		return new ForwardResolution("/WEB-INF/pages/setup/configuration.jsp");
+	}
+
+	public Resolution fetchFields() throws Exception {
+		Class.forName(databaseConfiguration.getDriverClass());
+		Connection conn = DriverManager.getConnection(databaseConfiguration
+				.getConnectionUrl(), databaseConfiguration.getUsername(),
+				databaseConfiguration.getPassword());
+
+		ResultSet rs = conn.getMetaData().getTables(null, "%", "%",
+				new String[] { "TABLE" });
+		List<String> catalogs = new ArrayList<String>();
+		while (rs.next()) {
+			String catalog = rs.getString("TABLE_NAME");
+			catalogs.add(catalog);
+		}
+
+		fields = catalogs;
+
+		return new ForwardResolution("/WEB-INF/pages/setup/fields.jsp");
 	}
 
 	/**
@@ -89,5 +118,20 @@ public class ConfigurationAction extends BaseAction {
 	 */
 	public void setFileConfiguration(FileConfiguration fileConfiguration) {
 		this.fileConfiguration = fileConfiguration;
+	}
+
+	/**
+	 * @return the fields
+	 */
+	public List<String> getFields() {
+		return fields;
+	}
+
+	/**
+	 * @param fields
+	 *            the fields to set
+	 */
+	public void setFields(List<String> fields) {
+		this.fields = fields;
 	}
 }
