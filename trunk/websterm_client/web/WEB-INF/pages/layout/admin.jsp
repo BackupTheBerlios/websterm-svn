@@ -13,7 +13,7 @@
 					<ul id="sidemenu">
 						<li><stripes:link
 							beanclass="org.jaden.websterm.client.action.AdminAction"
-							event="toggleEngine">Start/Stop Engine</stripes:link></li>
+							event="index">Start/Stop Engine</stripes:link></li>
 						<li><stripes:link
 							beanclass="org.jaden.websterm.client.action.AdminAction"
 							event="viewLogs">View Logs</stripes:link></li>

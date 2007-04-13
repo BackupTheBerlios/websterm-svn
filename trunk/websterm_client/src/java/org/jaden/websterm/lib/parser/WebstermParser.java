@@ -18,7 +18,7 @@ import antlr.collections.AST;
 
 /**
  * @author jack
- *
+ * 
  */
 public class WebstermParser {
 	public List<Rule> parseDefinition(String input) {
@@ -59,6 +59,7 @@ public class WebstermParser {
 			parseRuleImplementation(functions, root, ruleImpl);
 
 			rule.setFunctions(functions);
+			rule.setFunctionsTree(root);
 			rules.add(rule);
 			ast = (CommonAST) ast.getNextSibling();
 		}

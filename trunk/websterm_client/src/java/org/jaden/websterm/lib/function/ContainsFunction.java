@@ -6,19 +6,18 @@ package org.jaden.websterm.lib.function;
 import java.util.List;
 
 import org.jaden.websterm.lib.exception.FunctionNotValidException;
-import org.jaden.websterm.lib.model.Result;
 
 /**
  * @author jack
- *
+ * 
  */
 public class ContainsFunction extends AbstractFunctionImpl {
 	public static final String NAME = "contains";
 
-	public List<Result> execute(List<String> parameters)
+	public boolean execute(List<String> parameters)
 			throws FunctionNotValidException {
-		List<Result> results = super.execute(parameters);
-		return null;
+		boolean valid = super.execute(parameters);
+		return valid;
 	}
 
 	public String explain() {

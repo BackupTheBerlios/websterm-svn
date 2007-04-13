@@ -3,26 +3,24 @@
  */
 package org.jaden.websterm.lib.function;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.jaden.websterm.lib.exception.FunctionNotValidException;
 import org.jaden.websterm.lib.model.InputData;
-import org.jaden.websterm.lib.model.Result;
 
 /**
  * @author jack
- *
+ * 
  */
 public abstract class AbstractFunctionImpl implements FunctionImpl {
 	protected InputData data;
 
-	public List<Result> execute(List<String> parameters)
+	public boolean execute(List<String> parameters)
 			throws FunctionNotValidException {
 		boolean valid = validate(parameters);
 		if (!valid)
 			throw new FunctionNotValidException(getName());
-		return new ArrayList<Result>();
+		return true;
 	}
 
 	public String explain() {

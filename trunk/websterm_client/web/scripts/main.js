@@ -23,3 +23,8 @@ function submitForm(msgArea, form) {
 	var params = Form.serialize(form);
 	new Ajax.Updater(msgArea, form.action, {parameters:params});
 }
+
+function toggleEngine(status) {
+	var url = "/websterm_client/Admin.action?toggleEngine=&status=" + status;
+	new Ajax.Updater("statusPanel", url);
+}
