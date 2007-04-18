@@ -11,4 +11,9 @@
 			<value>classpath:functions.xml</value>
 		</constructor-arg>
 	</bean>
+
+	<bean id="ruleExecutionJob"
+		class="org.jaden.websterm.lib.engines.RuleExecutionJob">
+		<property name="parser" ref="webstermParser " />
+	</bean>
 </beans>
