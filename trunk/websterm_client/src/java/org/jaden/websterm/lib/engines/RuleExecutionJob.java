@@ -39,6 +39,7 @@ public class RuleExecutionJob implements Job {
 		String functionsPath = dataMap.getString("functionsPath");
 		String resultsPath = dataMap.getString("resultsPath");
 
+		parser = new WebstermParser();
 		List<Rule> rules = parser.parseDefinition(definitionFilePath);
 		if (!dbAccessEngine.isInitialized()) {
 			dbAccessEngine.init(hibernateConfigPath, inputConfigPath);
