@@ -10,22 +10,16 @@ import org.jaden.websterm.lib.datastructure.TreeNode;
 
 /**
  * @author jack
- *
+ * 
  */
 public class Rule implements Serializable {
-	public static final String HIGH_PRIORITY = "high";
-
-	public static final String MEDIUM_PRIORITY = "medium";
-
-	public static final String LOW_PRIORITY = "low";
-
 	private String name;
-
-	private String priority;
 
 	private List<Function> functions;
 
 	private TreeNode functionsTree;
+
+	private List<String> fields;
 
 	/**
 	 * @return the name
@@ -40,21 +34,6 @@ public class Rule implements Serializable {
 	 */
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	/**
-	 * @return the priority
-	 */
-	public String getPriority() {
-		return priority;
-	}
-
-	/**
-	 * @param priority
-	 *            the priority to set
-	 */
-	public void setPriority(String priority) {
-		this.priority = priority;
 	}
 
 	/**
@@ -85,5 +64,13 @@ public class Rule implements Serializable {
 	 */
 	public void setFunctionsTree(TreeNode functionTree) {
 		this.functionsTree = functionTree;
+	}
+
+	public List<String> getFields() {
+		return fields;
+	}
+
+	public void setFields(List<String> fields) {
+		this.fields = fields;
 	}
 }

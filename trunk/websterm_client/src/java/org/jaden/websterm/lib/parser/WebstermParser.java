@@ -34,6 +34,7 @@ public class WebstermParser {
 		}
 
 		CommonAST ast = (CommonAST) parser.getAST();
+		// Debug info
 		System.out.println(ast.toStringList());
 		List<Rule> rules = new ArrayList<Rule>();
 		while (ast != null) {
@@ -43,14 +44,17 @@ public class WebstermParser {
 			String ruleName = child.getText();
 			rule.setName(ruleName);
 
-			// Get the priority if it exists
-			AST priorityNode = child.getFirstChild();
-			if (priorityNode != null) {
-				String priority = priorityNode.getText();
-				rule.setPriority(priority);
-			} else {
-				rule.setPriority(Rule.MEDIUM_PRIORITY);
+			// Get the fields if it exists
+			List<String> fields = new ArrayList<String>();
+			AST fieldsNode = child.getFirstChild();
+			if (fieldsNode != null) {
+				while (fieldsNode != null) {
+					String field = fieldsNode.getText();
+					fields.add(field);
+					fieldsNode = fieldsNode.getNextSibling();
+				}
 			}
+			rule.setFields(fields);
 
 			AST ruleImpl = child.getNextSibling();
 			List<Function> functions = new ArrayList<Function>();

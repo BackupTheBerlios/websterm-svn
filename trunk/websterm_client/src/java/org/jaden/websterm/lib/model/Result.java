@@ -3,11 +3,13 @@
  */
 package org.jaden.websterm.lib.model;
 
+import java.io.Serializable;
+
 /**
  * @author jack
- *
+ * 
  */
-public class Result {
+public class Result implements Serializable {
 	private InputData originalData;
 
 	private String message;

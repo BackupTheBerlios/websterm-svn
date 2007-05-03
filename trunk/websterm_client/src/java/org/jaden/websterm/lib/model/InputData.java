@@ -9,7 +9,7 @@ import java.io.Serializable;
  * @author jack
  * 
  */
-public class InputData extends Model implements Serializable {
+public class InputData implements Serializable {
 	private String name;
 
 	private String data;
