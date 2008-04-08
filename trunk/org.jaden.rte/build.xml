@@ -13,19 +13,31 @@
     </path>
 
     <target name="svn.checkout">
-        <svn username="anticlockwise_5" password="jackshen">
-            <checkout url="https://anticlockwise_5@svn.berlios.de/svnroot/repos/websterm/trunk"
+        <svn username="${svn.usr}" password="${svn.pwd}">
+            <checkout url="${svn.url}"
                 destPath="checkout" />
         </svn>
     </target>
 
     <target name="svn.import">
-        <svn username="anticlockwise_5" password="jackshen">
-            <import url="https://anticlockwise_5@svn.berlios.de/svnroot/repos/websterm/trunk/org.jaden.rte"
+        <svn username="${svn.usr}" password="${usr.pwd}">
+            <import url="${svn.url}"
                 path="." message="Initial import" />
         </svn>
     </target>
 
+    <target name="svn.commit">
+        <svn username="${svn.usr}" password="${svn.pwd}">
+            <commit message="${svn.msg}" dir=".">
+            </commit>
+        </svn>
+    </target>
+
+    <target name="svn.update">
+        <svn username="${svn.usr}" password="${svn.pwd}">
+            <update dir="${src.dir}" />
+        </svn>
+    </target>
 
     <target name="init">
         <mkdir dir="${src.dir}" />
@@ -51,5 +63,17 @@
     </target>
 
     <target name="doc.api" depends="compile">
+        <mkdir dir="${doc.api}" />
+        <javadoc destdir="${doc.api}" author="true" version="true"
+            windowtitle="API">
+            <classpath refid="master.cp" />
+
+            <fileset dir="${src.dir}">
+                <include name="**/*.java" />
+            </fileset>
+
+            <doctitle><![CDATA[<h1>API</h1>]]></doctitle>
+            <bottom><![CDATA[<i>Copyright &#169; 2008</i>]]></bottom>
+        </javadoc>
     </target>
 </project>
