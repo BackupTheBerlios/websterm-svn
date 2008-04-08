@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="org.jaden.rte" basedir=".">
+    <property file="build.properties" />
+
+    <!-- Task Definitions -->
+    <typedef resource="org/tigris/subversion/svnant/svnantlib.xml" />
+
+    <path id="master.cp">
+        <fileset dir="${lib.dir}">
+            <include name="*.jar" />
+        </fileset>
+        <pathelement location="${bin.dir}" />
+    </path>
+
+    <target name="svn.checkout">
+        <svn username="anticlockwise_5" password="jackshen">
+            <checkout url="https://anticlockwise_5@svn.berlios.de/svnroot/repos/websterm/trunk"
+                destPath="checkout" />
+        </svn>
+    </target>
+
+    <target name="svn.import">
+        <svn username="anticlockwise_5" password="jackshen">
+            <import url="https://anticlockwise_5@svn.berlios.de/svnroot/repos/websterm/trunk/org.jaden.rte"
+                path="." message="Initial import" />
+        </svn>
+    </target>
+
+
+    <target name="init">
+        <mkdir dir="${src.dir}" />
+        <mkdir dir="${doc.dir}" />
+        <mkdir dir="${lib.dir}" />
+        <mkdir dir="${data.dir}" />
+    </target>
+
+    <target name="clean" depends="init">
+        <delete dir="${bin.dir}" />
+    </target>
+
+    <target name="compile">
+        <mkdir dir="${bin.dir}" />
+        <javac source="1.6" target="1.6"
+            srcdir="${src.dir}" destdir="${bin.dir}"
+            classpathref="master.cp" debug="true" />
+        <copy todir="${bin.dir}">
+            <fileset dir="${src.dir}">
+                <exclude name="**/*.java" />
+            </fileset>
+        </copy>
+    </target>
+
+    <target name="doc.api" depends="compile">
+    </target>
+</project>
