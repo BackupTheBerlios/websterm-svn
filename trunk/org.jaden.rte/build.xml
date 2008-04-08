@@ -28,7 +28,10 @@
 
     <target name="svn.commit">
         <svn username="${svn.usr}" password="${svn.pwd}">
-            <commit message="${svn.msg}" dir=".">
+            <commit message="${svn.msg}">
+                <fileset dir=".">
+                    <exclude name="**/*.swp" />
+                </fileset>
             </commit>
         </svn>
     </target>
