@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="org.jaden.changelog" basedir=".">
+    <import file="../build.xml" />
+
+    <typedef name="xdoclet" classname="org.xdoclet.ant.XDocletTask"
+        classpathref="master.cp" />
+
+    <target name="gen.xdoclet">
+        <xdoclet>
+            <fileset dir="${src.dir}">
+                <include name="**/*.java" />
+            </fileset>
+            <component classname="org.generama.JellyTemplateEngine" />
+            <component classname="org.xdoclet.plugin.qtags.impl.QTagImplPlugin"
+                destdir="${src.dir}" />
+            <component classname="org.xdoclet.plugin.qtags.impl.QTagLibraryPlugin"
+                destdir="${src.dir}"
+                packagereplace="org.jaden.changelog" />
+        </xdoclet>
+    </target>
+</project>

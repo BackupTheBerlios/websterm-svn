@@ -1,0 +1,10 @@
+let g:vjde_out_path='bin'
+let g:vjde_src_path='src'
+let g:vjde_lib_path='/usr/lib/jvm/java-6-sun/jre/rt.jar:bin:/home/rongzhou/VimJava/org.jaden.changelog/lib/commons-jelly-1.0.jar:/home/rongzhou/VimJava/org.jaden.changelog/lib/generama-1.2.3.jar:/home/rongzhou/VimJava/org.jaden.changelog/lib/log4j-1.2.8.jar:/home/rongzhou/VimJava/org.jaden.changelog/lib/picocontainer-1.0.jar:/home/rongzhou/VimJava/org.jaden.changelog/lib/qdox-20051211.114207.jar:/home/rongzhou/VimJava/org.jaden.changelog/lib/xdoclet-2.0.6.jar:/home/rongzhou/VimJava/org.jaden.changelog/lib/xdoclet-plugin-qtags-1.0.4.jar'
+let g:vjde_web_app=''
+let g:vjde_test_path=''
+let g:vjde_java_command='java'
+let g:vjde_show_paras=0
+let g:vjde_xml_advance=0
+" vim :ft=vim:
+        
