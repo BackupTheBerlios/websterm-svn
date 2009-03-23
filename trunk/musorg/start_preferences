@@ -1,0 +1,10 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+# start_downloader
+# author: rshen
+# date: 2009-03-21
+
+import musorg.preferences as app
+
+app.main()

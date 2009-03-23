@@ -1,0 +1,161 @@
+<ui version="4.0" >
+ <class>Preferences</class>
+ <widget class="QWidget" name="Preferences" >
+  <property name="geometry" >
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>720</width>
+    <height>567</height>
+   </rect>
+  </property>
+  <property name="windowTitle" >
+   <string>Form</string>
+  </property>
+  <layout class="QHBoxLayout" name="horizontalLayout" >
+   <property name="margin" >
+    <number>0</number>
+   </property>
+   <item>
+    <layout class="QVBoxLayout" name="verticalLayout" >
+     <item>
+      <widget class="QGroupBox" name="groupBox_2" >
+       <property name="title" >
+        <string>Downloader Preferences</string>
+       </property>
+       <layout class="QVBoxLayout" name="verticalLayout_2" >
+        <property name="margin" >
+         <number>0</number>
+        </property>
+        <item>
+         <layout class="QFormLayout" name="formLayout" >
+          <item row="0" column="0" >
+           <widget class="QLabel" name="label" >
+            <property name="text" >
+             <string>Download Directory</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1" >
+           <layout class="QHBoxLayout" name="horizontalLayout_2" >
+            <item>
+             <widget class="QLineEdit" name="lne_download_dir" />
+            </item>
+            <item>
+             <widget class="QPushButton" name="btn_browse_down_dir" >
+              <property name="text" >
+               <string>Browse</string>
+              </property>
+              <property name="icon" >
+               <iconset resource="../musorg.qrc" >
+                <normaloff>:/icons/icons/open.png</normaloff>:/icons/icons/open.png</iconset>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item row="1" column="0" >
+           <widget class="QLabel" name="label_3" >
+            <property name="text" >
+             <string>Maximum Downloads</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1" >
+           <widget class="QSpinBox" name="sb_max_downloads" >
+            <property name="sizePolicy" >
+             <sizepolicy vsizetype="Fixed" hsizetype="Fixed" >
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="accelerated" >
+             <bool>true</bool>
+            </property>
+            <property name="minimum" >
+             <number>-1</number>
+            </property>
+            <property name="value" >
+             <number>-1</number>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0" >
+           <widget class="QLabel" name="label_4" >
+            <property name="frameShape" >
+             <enum>QFrame::NoFrame</enum>
+            </property>
+            <property name="text" >
+             <string>Search Engine</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="1" >
+           <widget class="QComboBox" name="cb_engines" >
+            <property name="sizePolicy" >
+             <sizepolicy vsizetype="Fixed" hsizetype="Fixed" >
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="minimumSize" >
+             <size>
+              <width>200</width>
+              <height>0</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </widget>
+     </item>
+     <item>
+      <widget class="QGroupBox" name="groupBox" >
+       <property name="title" >
+        <string>Organizer Preferences</string>
+       </property>
+       <layout class="QVBoxLayout" name="verticalLayout_3" >
+        <property name="margin" >
+         <number>0</number>
+        </property>
+        <item>
+         <layout class="QFormLayout" name="formLayout_2" >
+          <item row="0" column="0" >
+           <widget class="QLabel" name="label_2" >
+            <property name="text" >
+             <string>Default Encoding</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1" >
+           <widget class="QLineEdit" name="lne_encoding" >
+            <property name="sizePolicy" >
+             <sizepolicy vsizetype="Fixed" hsizetype="Fixed" >
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="minimumSize" >
+             <size>
+              <width>150</width>
+              <height>0</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </widget>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <resources>
+  <include location="../musorg.qrc" />
+ </resources>
+ <connections/>
+</ui>

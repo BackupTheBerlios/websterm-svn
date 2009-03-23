@@ -1,0 +1,32 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+# musorg
+# author: rshen
+# date: 2009-03-19
+
+import sys
+import os
+from PyQt4.QtGui import QApplication
+from PyQt4.QtCore import QFile
+from musorg.ui import MusorgMainWindow
+from musorg.config import Configuration
+
+app = QApplication(sys.argv)
+
+# Load the configuration file first
+pref_dir = os.path.expanduser("~/.musorg")
+if not os.path.exists(pref_dir):
+    os.makedirs(pref_dir)
+
+pref_file = os.path.expanduser("~/.musorg/musorg.cfg")
+if not os.path.exists(pref_file):
+    def_file = QFile(":/configuration/conf/musorg.cfg")
+    def_file.copy(pref_file)
+    QFile.setPermissions(pref_file, QFile.ReadUser | QFile.WriteUser)
+
+config = Configuration(pref_file)
+frame = MusorgMainWindow(config)
+frame.show()
+
+sys.exit(app.exec_())

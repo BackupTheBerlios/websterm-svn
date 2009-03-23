@@ -1,0 +1,29 @@
+<RCC>
+  <qresource prefix="icons" >
+    <file>icons/star.png</file>
+    <file>icons/open.png</file>
+    <file>icons/empty_cd.png</file>
+    <file>icons/package.png</file>
+    <file>icons/edit.png</file>
+    <file>icons/status_complete.png</file>
+    <file>icons/status_idle.png</file>
+    <file>icons/organize.png</file>
+    <file>icons/reload.png</file>
+    <file>icons/encoding.png</file>
+    <file>icons/filesave.png</file>
+    <file>icons/pause.png</file>
+    <file>icons/player_start.png</file>
+    <file>icons/player_play.png</file>
+    <file>icons/start.png</file>
+    <file>icons/stop.png</file>
+    <file>icons/remove.png</file>
+    <file>icons/downloader.png</file>
+    <file>icons/down.png</file>
+    <file>icons/status_failed.png</file>
+    <file>icons/up.png</file>
+    <file>icons/add.png</file>
+  </qresource>
+  <qresource prefix="configuration" >
+    <file>conf/musorg.cfg</file>
+  </qresource>
+</RCC>
