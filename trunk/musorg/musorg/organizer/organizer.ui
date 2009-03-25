@@ -85,6 +85,12 @@
               <verstretch>0</verstretch>
              </sizepolicy>
             </property>
+            <property name="contextMenuPolicy" >
+             <enum>Qt::ActionsContextMenu</enum>
+            </property>
+            <property name="editTriggers" >
+             <set>QAbstractItemView::NoEditTriggers</set>
+            </property>
             <property name="headerHidden" >
              <bool>true</bool>
             </property>
@@ -186,16 +192,54 @@
       </widget>
      </widget>
      <widget class="QTreeView" name="trw_tracks" >
-      <property name="sizePolicy" >
-       <sizepolicy vsizetype="Expanding" hsizetype="Expanding" >
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
+      <property name="headerHidden" >
+       <bool>false</bool>
       </property>
      </widget>
     </widget>
    </item>
   </layout>
+  <action name="actionEdit_Album" >
+   <property name="icon" >
+    <iconset resource="../musorg.qrc" >
+     <normaloff>:/icons/icons/edit.png</normaloff>:/icons/icons/edit.png</iconset>
+   </property>
+   <property name="text" >
+    <string>Edit Album</string>
+   </property>
+  </action>
+  <action name="actionRemove_Album" >
+   <property name="icon" >
+    <iconset resource="../musorg.qrc" >
+     <normaloff>:/icons/icons/remove.png</normaloff>:/icons/icons/remove.png</iconset>
+   </property>
+   <property name="text" >
+    <string>Remove Album</string>
+   </property>
+  </action>
+  <action name="actionImport_Files" >
+   <property name="icon" >
+    <iconset resource="../musorg.qrc" >
+     <normaloff>:/icons/icons/add.png</normaloff>:/icons/icons/add.png</iconset>
+   </property>
+   <property name="text" >
+    <string>Import Files</string>
+   </property>
+  </action>
+  <action name="actionImport_Directory" >
+   <property name="icon" >
+    <iconset resource="../musorg.qrc" >
+     <normaloff>:/icons/icons/add.png</normaloff>:/icons/icons/add.png</iconset>
+   </property>
+   <property name="text" >
+    <string>Import Directory</string>
+   </property>
+  </action>
+  <action name="actionChange_Encoding" >
+   <property name="text" >
+    <string>Change Encoding</string>
+   </property>
+  </action>
  </widget>
  <resources>
   <include location="../musorg.qrc" />

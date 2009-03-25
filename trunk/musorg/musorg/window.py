@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'musorg_main.ui'
 #
-# Created: Sat Mar 21 21:59:44 2009
+# Created: Wed Mar 25 11:47:18 2009
 #      by: PyQt4 UI code generator 4.4.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -71,7 +71,7 @@ class Ui_MainWindow(object):
         self.horizontalLayout_7.addWidget(self.main_tab)
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtGui.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 949, 22))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 949, 23))
         self.menubar.setObjectName("menubar")
         self.menu_File = QtGui.QMenu(self.menubar)
         self.menu_File.setObjectName("menu_File")
@@ -82,7 +82,7 @@ class Ui_MainWindow(object):
         self.toolBar = QtGui.QToolBar(MainWindow)
         self.toolBar.setToolButtonStyle(QtCore.Qt.ToolButtonTextUnderIcon)
         self.toolBar.setObjectName("toolBar")
-        MainWindow.addToolBar(QtCore.Qt.LeftToolBarArea, self.toolBar)
+        MainWindow.addToolBar(QtCore.Qt.TopToolBarArea, self.toolBar)
         self.actionSave_Preferences = QtGui.QAction(MainWindow)
         self.actionSave_Preferences.setIcon(icon)
         self.actionSave_Preferences.setObjectName("actionSave_Preferences")
@@ -121,14 +121,6 @@ class Ui_MainWindow(object):
         icon8.addPixmap(QtGui.QPixmap(":/icons/icons/organize.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.actionAuto_Organize.setIcon(icon8)
         self.actionAuto_Organize.setObjectName("actionAuto_Organize")
-        self.actionImport_Files = QtGui.QAction(MainWindow)
-        icon9 = QtGui.QIcon()
-        icon9.addPixmap(QtGui.QPixmap(":/icons/icons/add.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.actionImport_Files.setIcon(icon9)
-        self.actionImport_Files.setObjectName("actionImport_Files")
-        self.actionImport_Directory = QtGui.QAction(MainWindow)
-        self.actionImport_Directory.setIcon(icon9)
-        self.actionImport_Directory.setObjectName("actionImport_Directory")
         self.menubar.addAction(self.menu_File.menuAction())
         self.toolBar.addAction(self.actionStart_Download)
         self.toolBar.addAction(self.actionRemove_Download)
@@ -142,7 +134,7 @@ class Ui_MainWindow(object):
         self.toolBar.addAction(self.actionSave_Preferences)
 
         self.retranslateUi(MainWindow)
-        self.main_tab.setCurrentIndex(0)
+        self.main_tab.setCurrentIndex(1)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
@@ -152,15 +144,13 @@ class Ui_MainWindow(object):
         self.main_tab.setTabText(self.main_tab.indexOf(self.tab_pref), QtGui.QApplication.translate("MainWindow", "Preferences", None, QtGui.QApplication.UnicodeUTF8))
         self.menu_File.setTitle(QtGui.QApplication.translate("MainWindow", "&File", None, QtGui.QApplication.UnicodeUTF8))
         self.toolBar.setWindowTitle(QtGui.QApplication.translate("MainWindow", "toolBar", None, QtGui.QApplication.UnicodeUTF8))
-        self.actionSave_Preferences.setText(QtGui.QApplication.translate("MainWindow", "Save Preferences", None, QtGui.QApplication.UnicodeUTF8))
-        self.actionPause_Download.setText(QtGui.QApplication.translate("MainWindow", "Pause Download", None, QtGui.QApplication.UnicodeUTF8))
-        self.actionResume_Download.setText(QtGui.QApplication.translate("MainWindow", "Resume Download", None, QtGui.QApplication.UnicodeUTF8))
-        self.actionStart_Download.setText(QtGui.QApplication.translate("MainWindow", "Start Download", None, QtGui.QApplication.UnicodeUTF8))
-        self.actionRemove_Download.setText(QtGui.QApplication.translate("MainWindow", "Remove Download", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionSave_Preferences.setText(QtGui.QApplication.translate("MainWindow", "Save", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionPause_Download.setText(QtGui.QApplication.translate("MainWindow", "Pause", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionResume_Download.setText(QtGui.QApplication.translate("MainWindow", "Resume", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionStart_Download.setText(QtGui.QApplication.translate("MainWindow", "Start", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionRemove_Download.setText(QtGui.QApplication.translate("MainWindow", "Remove", None, QtGui.QApplication.UnicodeUTF8))
         self.actionCorrect_Encodings.setText(QtGui.QApplication.translate("MainWindow", "Correct Encodings", None, QtGui.QApplication.UnicodeUTF8))
         self.actionReload_Collection.setText(QtGui.QApplication.translate("MainWindow", "Reload Collection", None, QtGui.QApplication.UnicodeUTF8))
         self.actionAuto_Organize.setText(QtGui.QApplication.translate("MainWindow", "Auto-Organize", None, QtGui.QApplication.UnicodeUTF8))
-        self.actionImport_Files.setText(QtGui.QApplication.translate("MainWindow", "Import Files", None, QtGui.QApplication.UnicodeUTF8))
-        self.actionImport_Directory.setText(QtGui.QApplication.translate("MainWindow", "Import Directory", None, QtGui.QApplication.UnicodeUTF8))
 
 import musorg_rc

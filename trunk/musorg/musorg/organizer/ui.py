@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'organizer.ui'
 #
-# Created: Mon Mar 23 13:32:42 2009
+# Created: Wed Mar 25 12:09:41 2009
 #      by: PyQt4 UI code generator 4.4.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -51,6 +51,8 @@ class Ui_Organizer(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.trw_albums.sizePolicy().hasHeightForWidth())
         self.trw_albums.setSizePolicy(sizePolicy)
+        self.trw_albums.setContextMenuPolicy(QtCore.Qt.ActionsContextMenu)
+        self.trw_albums.setEditTriggers(QtGui.QAbstractItemView.NoEditTriggers)
         self.trw_albums.setHeaderHidden(True)
         self.trw_albums.setObjectName("trw_albums")
         self.verticalLayout_4.addWidget(self.trw_albums)
@@ -101,13 +103,23 @@ class Ui_Organizer(object):
         self.verticalLayout_3.addLayout(self.verticalLayout_2)
         self.tabWidget.addTab(self.tab_2, "")
         self.trw_tracks = QtGui.QTreeView(self.splitter)
-        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Expanding)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.trw_tracks.sizePolicy().hasHeightForWidth())
-        self.trw_tracks.setSizePolicy(sizePolicy)
+        self.trw_tracks.setHeaderHidden(False)
         self.trw_tracks.setObjectName("trw_tracks")
         self.verticalLayout.addWidget(self.splitter)
+        self.actionEdit_Album = QtGui.QAction(Organizer)
+        self.actionEdit_Album.setIcon(icon3)
+        self.actionEdit_Album.setObjectName("actionEdit_Album")
+        self.actionRemove_Album = QtGui.QAction(Organizer)
+        self.actionRemove_Album.setIcon(icon2)
+        self.actionRemove_Album.setObjectName("actionRemove_Album")
+        self.actionImport_Files = QtGui.QAction(Organizer)
+        self.actionImport_Files.setIcon(icon1)
+        self.actionImport_Files.setObjectName("actionImport_Files")
+        self.actionImport_Directory = QtGui.QAction(Organizer)
+        self.actionImport_Directory.setIcon(icon1)
+        self.actionImport_Directory.setObjectName("actionImport_Directory")
+        self.actionChange_Encoding = QtGui.QAction(Organizer)
+        self.actionChange_Encoding.setObjectName("actionChange_Encoding")
 
         self.retranslateUi(Organizer)
         self.tabWidget.setCurrentIndex(0)
@@ -121,5 +133,10 @@ class Ui_Organizer(object):
         self.tb_edit_album.setText(QtGui.QApplication.translate("Organizer", "...", None, QtGui.QApplication.UnicodeUTF8))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab), QtGui.QApplication.translate("Organizer", "Albums", None, QtGui.QApplication.UnicodeUTF8))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), QtGui.QApplication.translate("Organizer", "Favourites", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionEdit_Album.setText(QtGui.QApplication.translate("Organizer", "Edit Album", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionRemove_Album.setText(QtGui.QApplication.translate("Organizer", "Remove Album", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionImport_Files.setText(QtGui.QApplication.translate("Organizer", "Import Files", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionImport_Directory.setText(QtGui.QApplication.translate("Organizer", "Import Directory", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionChange_Encoding.setText(QtGui.QApplication.translate("Organizer", "Change Encoding", None, QtGui.QApplication.UnicodeUTF8))
 
 import musorg_rc

@@ -11,7 +11,8 @@ from PyQt4.QtCore import *
 from musorg.organizer.ui import *
 from musorg.organizer.encoding import *
 from musorg.organizer.collection import *
-from musorg.db import *
+from musorg.organizer.edit_album import *
+from musorg.qtdb import *
 
 class OrganizerWidget(Ui_Organizer, QWidget):
 
@@ -35,13 +36,14 @@ class OrganizerWidget(Ui_Organizer, QWidget):
         self.trw_albums.setModel(self.albums_model)
         self.trw_albums.setRootIsDecorated(False)
         self.trw_albums.setColumnWidth(0, 50)
+        self.trw_albums.addAction(self.actionEdit_Album)
+        self.trw_albums.addAction(self.actionRemove_Album)
+        self.trw_albums.addAction(self.actionChange_Encoding)
         loader = CollectionLoader(self)
         self.connect(loader, SIGNAL("albumLoaded(int,QString,QString,int)"),
                 self.load_album)
         loader.start()
 
-        self.actionImport_Files = actions['actionImport_Files']
-        self.actionImport_Directory = actions['actionImport_Directory']
         self.actionReload_Collection = actions['actionReload_Collection']
         self.actionCorrect_Encodings = actions['actionCorrect_Encodings']
 
@@ -55,7 +57,9 @@ class OrganizerWidget(Ui_Organizer, QWidget):
         self.tb_reload_collection.setDefaultAction(
                 self.actionReload_Collection)
 
-        self.connect(self.trw_albums, SIGNAL("clicked(QModelIndex)"),
+        self.connect(self.trw_albums, SIGNAL("doubleClicked(QModelIndex)"),
+                self.edit_album)
+        self.connect(self.trw_albums, SIGNAL("pressed(QModelIndex)"),
                 self.list_tracks)
         self.connect(self.actionReload_Collection, SIGNAL("triggered()"),
                 self.reload_collection)
@@ -93,6 +97,20 @@ class OrganizerWidget(Ui_Organizer, QWidget):
         album = AlbumItem.init_std_items(aid, name, coverart, rating)
         self.albums_model.appendRow(album)
 
+    def edit_album(self, index):
+        row = 0
+        if index == None:
+            selection = self.trw_albums.selectionModel().selectedRows()
+            row = selection[0].row()
+        else:
+            row = index.row()
+
+        id_item = self.albums_model.item(row, 0)
+        name_item = self.albums_model.item(row, 1)
+
+        edit_dialog = EditAlbumDialog(self, id_item, name_item)
+        edit_dialog.show()
+
     def list_tracks(self, index):
         album_item = self.albums_model.item(index.row(), 0)
         album_id = album_item.data(Qt.UserRole).toInt()[0]
@@ -114,6 +132,30 @@ class OrganizerWidget(Ui_Organizer, QWidget):
         for album in albums:
             std_items = album.to_std_items()
             self.albums_model.appendRow(std_items)
+
+class EditAlbumDialog(QDialog, Ui_EditDialog):
+
+    def __init__(self, parent=None, id_item=None, name_item=None):
+        QDialog.__init__(self, parent)
+        self.setupUi(self)
+
+        self.id_item = id_item
+        self.name_item = name_item
+
+        cover = id_item.text()
+        self.aid = id_item.data(Qt.UserRole).toInt()[0]
+        l = name_item.data(Qt.UserRole).toStringList()
+        name, rating = l
+
+        self.lne_name.setText(name)
+        self.lb_cover.setPixmap(QPixmap(cover))
+
+        self.cb_rating.addItems([str(i) for i in range(6)])
+
+        artists = session.query(ArtistItem).all()
+        for artist in artists:
+            self.cb_artist.addItem(artist.name.decode("utf-8"),
+                    QVariant(artist.id))
 
 class TrackItemDelegate(QItemDelegate):
 

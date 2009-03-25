@@ -38,8 +38,6 @@ class MusorgMainWindow(Ui_MainWindow, QMainWindow):
                 actionRemove_Download=self.actionRemove_Download)
         self.verticalLayout_2.addWidget(self.downloader)
         self.organizer = OrganizerWidget(self.tab_organizer, config,
-                actionImport_Files=self.actionImport_Files,
-                actionImport_Directory=self.actionImport_Directory,
                 actionReload_Collection=self.actionReload_Collection,
                 actionCorrect_Encodings=self.actionCorrect_Encodings)
         self.horizontalLayout_8.addWidget(self.organizer)

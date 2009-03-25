@@ -61,7 +61,8 @@ class PreferencesWidget(Ui_Preferences, QWidget):
         down_dir = QFileDialog.getExistingDirectory(self,
                 "Browse Download Directory", cur_down_dir)
         if down_dir != None and down_dir != '':
-            self.config.set("Download", "download.dir", unicode(down_dir))
+            print down_dir
+            self.config.set("Downloader", "download.dir", unicode(down_dir))
             self.lne_download_dir.setText(down_dir)
 
     def set_max_threads(self, num_threads):
