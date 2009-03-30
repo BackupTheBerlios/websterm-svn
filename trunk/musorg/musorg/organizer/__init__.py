@@ -65,6 +65,8 @@ class OrganizerWidget(Ui_Organizer, QWidget):
                 self.reload_collection)
         self.connect(self.actionCorrect_Encodings, SIGNAL("triggered()"),
                 self.correct_encodings)
+        self.connect(self.actionEdit_Album, SIGNAL("triggered()"),
+                self.edit_album_no_index)
 
     def reload_collection(self):
         self.pb_reload.setVisible(True)
@@ -109,19 +111,26 @@ class OrganizerWidget(Ui_Organizer, QWidget):
         name_item = self.albums_model.item(row, 1)
 
         edit_dialog = EditAlbumDialog(self, id_item, name_item)
+        self.connect(edit_dialog, SIGNAL("infoUpdated(int)"), self.update_display)
         edit_dialog.show()
+
+    def edit_album_no_index(self):
+        self.edit_album(None)
 
     def list_tracks(self, index):
         album_item = self.albums_model.item(index.row(), 0)
         album_id = album_item.data(Qt.UserRole).toInt()[0]
         album = session.query(AlbumItem).filter(AlbumItem.id==int(album_id))\
                 .one()
+        self.display_tracks(album)
+
+    def display_tracks(self, album):
         tracks = album.tracks
         self.tracks_model.removeRows(0, self.tracks_model.rowCount())
         for track in tracks:
             item = track.to_std_item()
             self.tracks_model.appendRow(item)
-
+        
     def update_loading_status(self, percent, track_name):
         self.pb_reload.setValue(percent)
 
@@ -132,6 +141,10 @@ class OrganizerWidget(Ui_Organizer, QWidget):
         for album in albums:
             std_items = album.to_std_items()
             self.albums_model.appendRow(std_items)
+
+    def update_display(self, album_id):
+        album = session.query(AlbumItem).filter(AlbumItem.id==album_id).one()
+        self.display_tracks(album)
 
 class EditAlbumDialog(QDialog, Ui_EditDialog):
 
@@ -146,16 +159,64 @@ class EditAlbumDialog(QDialog, Ui_EditDialog):
         self.aid = id_item.data(Qt.UserRole).toInt()[0]
         l = name_item.data(Qt.UserRole).toStringList()
         name, rating = l
+        self.star_labels = [self.label, self.label_6, self.label_7,
+                self.label_5, self.label_8]
+        rating = int(rating)
 
         self.lne_name.setText(name)
         self.lb_cover.setPixmap(QPixmap(cover))
 
         self.cb_rating.addItems([str(i) for i in range(6)])
+        self.cb_rating.setCurrentIndex(rating)
+        self.star = QIcon(":/icons/icons/star.png").pixmap(QSize(23, 23),
+                QIcon.Normal, QIcon.On)
+        self.add_stars(rating)
 
+        self.album = session.query(AlbumItem)\
+                .filter(AlbumItem.id == self.aid).one()
         artists = session.query(ArtistItem).all()
         for artist in artists:
             self.cb_artist.addItem(artist.name.decode("utf-8"),
                     QVariant(artist.id))
+
+        artist = self.album.artist
+        if artist != None:
+            index = self.cb_artist.findData(QVariant(artist.id))
+            self.cb_artist.setCurrentIndex(index)
+
+        self.connect(self.cb_rating, SIGNAL("currentIndexChanged(int)"),
+                self.add_stars)
+        self.connect(self, SIGNAL("accepted()"), self.save_album)
+
+    def add_stars(self, index):
+        diff = 5 - index
+        for i in range(len(self.star_labels)):
+            lb = self.star_labels[i]
+            if i < index:
+                lb.setPixmap(self.star)
+            else:
+                lb.setPixmap(QPixmap())
+
+    def save_album(self):
+        name = self.lne_name.text()
+        rating = self.cb_rating.currentIndex()
+        self.name_item.setData(QVariant([name, rating]), Qt.UserRole)
+
+        self.album.name = unicode(name).encode("utf-8")
+        self.album.rating = int(rating)
+
+        index = self.cb_artist.currentIndex()
+        artist_id = self.cb_artist.itemData(index).toInt()[0]
+        artist = session.query(ArtistItem).filter(ArtistItem.id == artist_id).one()
+        self.album.artist = artist
+
+        # Update tracks' artists
+        tracks = self.album.tracks
+        for track in tracks:
+            track.artist = artist
+        session.merge(self.album)
+
+        self.emit(SIGNAL("infoUpdated(int)"), self.album.id)
 
 class TrackItemDelegate(QItemDelegate):
 
@@ -169,7 +230,7 @@ class TrackItemDelegate(QItemDelegate):
     def createEditor(self, parent, option, index):
         if index.column() == 3:
             combobox = QComboBox(parent)
-            combobox.addItems(["0", "1", "2", "3", "4", "5"])
+            combobox.addItems([str(i) for i in range(6)])
             return combobox
         elif index.column() == 1:
             combobox = QComboBox(parent)
